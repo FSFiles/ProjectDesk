@@ -5,6 +5,8 @@ import { config } from './config/env.js';
 import { connectDatabase, disconnectDatabase } from './config/db.js';
 import { createApp } from './app.js';
 import { setSocketIO } from './services/notification.service.js';
+import { ensureFacultyAccounts } from './utils/facultyAccounts.js';
+import { User } from './models/User.js';
 
 let started = false; // hard guard: listen() must only ever happen once per process
 
@@ -13,6 +15,16 @@ const start = async () => {
   started = true;
 
   await connectDatabase();
+
+  // Idempotent bootstrap of the 5 authorized faculty accounts, so any freshly
+  // connected database (e.g. MongoDB Atlas on Render) always has them and no
+  // separate seed step is required. Creates only missing accounts — existing
+  // accounts and their passwords are never touched.
+  try {
+    await ensureFacultyAccounts(User, console.log);
+  } catch (err) {
+    console.error('[boot] faculty account bootstrap failed:', err?.message || err);
+  }
 
   const app = createApp();
   const server = http.createServer(app);
