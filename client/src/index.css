@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply font-sans text-slate-800 bg-slate-100;
+  }
+  ::selection {
+    @apply bg-brand-100 text-navy-900;
+  }
+}
+
+@layer components {
+  /* Shimmering skeleton primitive */
+  .skeleton {
+    @apply relative overflow-hidden rounded-lg bg-slate-200/80;
+  }
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0 animate-shimmer;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+    background-size: 400px 100%;
+  }
+
+  /* Focus ring used across interactive elements */
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+  }
+
+  /* Subtle glass accent (used sparingly) */
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/60;
+  }
+}
+
+/* Thin, unobtrusive scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(203 213 225) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgb(203 213 225);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}

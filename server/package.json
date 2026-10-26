@@ -1,0 +1,28 @@
+{
+  "name": "projectdesk-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "seed": "node src/utils/seed.js",
+    "clean": "node src/utils/clean.js",
+    "reset": "node src/utils/clean.js && node src/utils/seed.js",
+    "test": "node src/tests/api.test.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.7.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express-rate-limit": "^8.1.0",
+    "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.1",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2",
+    "socket.io": "^4.8.1"
+  }
+}

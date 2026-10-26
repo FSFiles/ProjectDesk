@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Environment (never commit secrets)
+.env
+.env.local
+.env.*.local
+client/.env
+client/.env.local
+
+# Build output
+client/dist/
+dist/
+build/
+
+# Local runtime data
+server/uploads/
+tools/
+*.log
+logs/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Test artifacts
+coverage/
+
+# Sensitive credentials
+Faculty_Login_Creditials.txt
+
+# Additional environment files
+server/.env
+server/.env.local
+client/.env.* 
+
+.freebuff/

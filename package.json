@@ -1,0 +1,24 @@
+{
+  "name": "projectdesk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ProjectDesk - Student Project Lifecycle Management Platform (MERN)",
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "freeports": "node scripts/freeports.js",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "npm run freeports && concurrently -n server,client -c blue,green \"npm run server\" \"npm run client\"",
+    "seed": "npm run seed --prefix server",
+    "clean": "npm run clean --prefix server",
+    "reset": "npm run reset --prefix server",
+    "test": "npm test --prefix server",
+    "verify": "node scripts/verify-registration.js",
+    "verify:faculty": "node scripts/verify-faculty.js",
+    "build:client": "npm run build --prefix client",
+    "start": "npm run start --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
